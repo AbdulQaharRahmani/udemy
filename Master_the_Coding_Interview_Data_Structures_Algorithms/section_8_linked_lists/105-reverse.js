@@ -44,12 +44,11 @@ class LinkedList {
   remove(index) {
     if (index === 0 || this.length === 1) {
       this.head = this.head.next;
-    }
-    else if (index >= this.length) {
+    } else if (index >= this.length) {
       const node = this.traverseToIndex(this.length - 2); // one before last
       node.next = null;
-      this.tail = node;}
-    else {
+      this.tail = node;
+    } else {
       const previousNode = this.traverseToIndex(index - 1);
       const node = this.traverseToIndex(index);
       previousNode.next = node.next;
@@ -65,6 +64,22 @@ class LinkedList {
       counter++;
     }
     return node;
+  }
+  reverse() {
+    if(this.length<=1){
+        return;
+    }
+    let currentNode = this.head.next;
+    let previousNode = this.head;
+    this.head.next = null;
+    while (currentNode ) {    
+        let temp = currentNode.next;
+      currentNode.next = previousNode;
+      
+      previousNode = currentNode;
+      currentNode = temp;
+    }
+    this.head = this.tail;
   }
   display() {
     let temp = this.head;
@@ -85,4 +100,7 @@ linkedList.insert(3, 30);
 linkedList.insert(0, 40);
 linkedList.insert(5, 403);
 linkedList.remove(50);
+linkedList.display();
+linkedList.reverse();
+console.log();
 linkedList.display();
